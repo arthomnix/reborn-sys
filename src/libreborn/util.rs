@@ -1,3 +1,4 @@
+use libc::{c_char, c_int};
 #[macro_export]
 macro_rules! hook {
     (fn $func:ident[$real_func:ident, $ensure_func:ident]($($param:ident: $pty:ty),*) -> $ret:ty $body:block) => {
@@ -33,4 +34,10 @@ macro_rules! hook {
         #[allow(non_snake_case)]
         extern "C" fn $func($($param: $pty),*) -> $ret $body
     };
+}
+
+extern "C" {
+    pub fn reborn_get_version() -> *const c_char;
+    pub fn reborn_is_headless() -> c_int;
+    pub fn reborn_is_server() -> c_int;
 }
