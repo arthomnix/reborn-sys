@@ -15,7 +15,7 @@ extern "C" {
 macro_rules! patch_helper {
     ($func:ident($($args:tt)*)) => {{
         let file = std::ffi::CStr::from_bytes_with_nul_unchecked(concat!(file!(), '\0').as_bytes());
-        let line = line!() as libc::c_int;
+        let line = line!() as $crate::libc::c_int;
         $func(file.as_ptr(), line, $($args)*);
     }};
 }

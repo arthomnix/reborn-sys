@@ -28,6 +28,6 @@ macro_rules! err {
 
     ($fmt:literal, $($args:tt)*) => {{
         eprintln!("[ERR]: ({}:{}): {}", file!(), line!(), format_args!($fmt, $($args)*));
-        std::process::exit(libc::EXIT_FAILURE);
+        std::process::exit($crate::libc::EXIT_FAILURE);
     }};
 }

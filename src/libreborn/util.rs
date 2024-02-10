@@ -12,18 +12,19 @@ macro_rules! hook {
         fn $ensure_func() {
             if $real_func.with_borrow(Option::is_none) {
                 unsafe {
-                    libc::dlerror();
+                    $crate::libc::dlerror();
                     let name = std::ffi::CString::new(stringify!($func)).unwrap();
-                    let ptr = libc::dlsym(
-                        libc::RTLD_NEXT,
+                    let ptr = $crate::libc::dlsym(
+                        $crate::libc::RTLD_NEXT,
                         name.as_ptr()
                     );
                     if !ptr.is_null() {
                         $real_func.with_borrow_mut(|r| *r = Some(std::mem::transmute(ptr)));
                     } else {
-                        let error = libc::dlerror();
+                        let error = $crate::libc::dlerror();
                         let c_str = std::ffi::CStr::from_ptr(error);
                         let string = c_str.to_string_lossy();
+                        use $crate::err;
                         err!("{string}");
                     }
                 }
