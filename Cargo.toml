@@ -1,0 +1,11 @@
+[package]
+name = "reborn-sys"
+version = "0.1.0"
+edition = "2021"
+authors = ["arthomnix"]
+description = "Unsafe bindings for Minecraft: Pi Edition: Reborn modding"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+libc = "0.2"
