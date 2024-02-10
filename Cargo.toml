@@ -9,3 +9,4 @@ description = "Unsafe bindings for Minecraft: Pi Edition: Reborn modding"
 
 [dependencies]
 libc = "0.2"
+ctor = "0.2"

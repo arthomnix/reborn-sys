@@ -1,2 +1,3 @@
 pub mod libreborn;
-mod libreborn;
+
+pub use ctor::ctor;
